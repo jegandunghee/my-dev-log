@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import gsap from 'gsap';
 import Header from './components/Header/Header';
 import FilterBar from './components/FilterBar/FilterBar';
 import CardList from './components/CardList/CardList';
@@ -61,6 +62,7 @@ const DUMMY_POSTS = [
 
 function App() {
   const [activeCategory, setActiveCategory] = useState('전체');
+  const titleRef = useRef(null);
 
   // 카테고리 변경 핸들러
   const handleCategoryChange = (category) => {
@@ -72,13 +74,59 @@ function App() {
     ? DUMMY_POSTS
     : DUMMY_POSTS.filter(post => post.category === activeCategory);
 
+  // 텍스트를 한 글자씩 분리하여 렌더링하기 위한 배열
+  const titleChars = "나의 개발일지".split('');
+
+  useEffect(() => {
+    // 최초 렌더링 시 메인 타이틀 파도타기(Wave Reveal) 페이드인 효과
+    // React Strict Mode의 이중 렌더링 버그를 방지하기 위해 fromTo 사용
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.app__title-char', 
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.05,
+          ease: 'power4.out',
+        }
+      );
+    }, titleRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  // 마우스 호버 시 글자가 둥둥 뜨는(Bounce Loop) 효과를 주는 핸들러
+  const handleCharMouseEnter = (e) => {
+    gsap.to(e.target, { y: -10, duration: 0.3, ease: 'power1.out', yoyo: true, repeat: -1 });
+  };
+
+  // 마우스가 벗어나면 원위치로 돌아오는 핸들러
+  const handleCharMouseLeave = (e) => {
+    gsap.killTweensOf(e.target);
+    gsap.to(e.target, { y: 0, duration: 0.3, ease: 'power2.out' });
+  };
+
   return (
     <div className="app">
       <Header />
       
       <main className="app__main">
         <section className="app__hero">
-          <h1 className="app__title">나의 개발일지</h1>
+          <h1 className="app__title" ref={titleRef}>
+            {/* 메인 타이틀을 span으로 쪼개어 개별 애니메이션 제어 */}
+            {titleChars.map((char, index) => (
+              <span 
+                key={index} 
+                className="app__title-char"
+                onMouseEnter={handleCharMouseEnter}
+                onMouseLeave={handleCharMouseLeave}
+                style={{ display: 'inline-block', whiteSpace: char === ' ' ? 'pre' : 'normal' }}
+              >
+                {char}
+              </span>
+            ))}
+          </h1>
           <p className="app__subtitle">기록은 성장의 밑거름이 됩니다.</p>
         </section>
 

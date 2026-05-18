@@ -1,16 +1,38 @@
-# React + Vite
+# 나의 개발일지 (My Dev Log)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+개인 학습 내용과 프로젝트 경험을 기록하기 위한 블로그 형태의 포트폴리오 웹사이트입니다.
 
-Currently, two official plugins are available:
+## 📌 프로젝트 소개
+'나의 개발일지'는 프론트엔드 개발 과정에서 얻은 지식과 일상을 정리하는 공간입니다. 
+React 기반의 컴포넌트 설계와 SCSS(BEM)를 활용한 스타일링, 그리고 GSAP를 이용한 기본적인 UI 인터랙션 구현에 중점을 두어 개발했습니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠 기술 스택
+- **Frontend**: React (Vite)
+- **Styling**: SCSS (BEM 방법론 적용)
+- **Animation**: GSAP
+- **Icons**: react-icons
 
-## React Compiler
+## ✨ 주요 기능 및 특징
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. UI 디자인
+- **밝은 테마 (Light Mode)**: 오프화이트(#f8fafc) 기반의 배경을 사용하여 가독성을 높였습니다.
+- **글래스모피즘 (Glassmorphism)**: 카드와 헤더 컴포넌트에 반투명 배경 및 블러(Blur) 효과를 제한적으로 사용하여 시각적 계층을 구분했습니다.
 
-## Expanding the ESLint configuration
+### 2. 레이아웃 및 반응형 처리
+- **그리드 시스템**: 디바이스 해상도에 따라 카드 목록이 3단(데스크톱), 2단(태블릿), 1단(모바일)으로 자동 변경되도록 CSS Grid를 적용했습니다.
+- **상단 고정 헤더**: 스크롤 시에도 메뉴 접근이 용이하도록 헤더를 상단에 고정시켰습니다.
+- **필터 탭 최적화**: 카테고리 필터 탭은 모바일 환경을 포함한 모든 해상도에서 화면 중앙에 정렬되도록 레이아웃을 구성했습니다.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 3. 인터랙션 (GSAP)
+- **타이틀 애니메이션**: 화면 로드 시 메인 타이틀 텍스트가 한 글자씩 순차적으로 나타나며, 마우스 호버 시 가벼운 움직임이 발생하도록 구현했습니다.
+- **목록 전환 애니메이션**: 카테고리 필터 클릭 시, 선택된 데이터에 맞춰 카드 목록이 페이드인 되며 재배치되는 전환 효과를 적용했습니다.
+- **호버 효과**: 포스트 카드에 마우스를 올릴 시 이미지 확대 및 테두리 색상 변화를 통해 상호작용 요소를 추가했습니다.
+
+## 📁 폴더 구조
+
+- `src/components/`
+  - `Header/`: 상단 네비게이션
+  - `FilterBar/`: 카테고리 필터 메뉴
+  - `CardList/`, `Card/`: 게시글 목록 및 개별 아이템 컴포넌트
+- `src/styles/`: 컬러, 폰트, 반응형 믹스인 등 전역 SCSS 파일
+- `src/App.jsx`: 전체 레이아웃 구성 및 필터링 상태(State) 관리

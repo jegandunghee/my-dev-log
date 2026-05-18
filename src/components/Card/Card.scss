@@ -12,7 +12,8 @@
 
   &:hover {
     transform: translateY(-10px);
-    border-color: rgba(255, 255, 255, 0.2);
+    // 호버 시 테두리를 더 밝고 선명하게 강조하여 입체감 부여
+    border-color: rgba(255, 255, 255, 0.9);
     box-shadow: $glass-shadow-hover;
 
     .card__thumbnail-dummy {
@@ -30,12 +31,12 @@
       width: 100%;
       height: 100%;
       transition: transform 0.5s ease;
-      // 나중에 실제 이미지 적용 시 object-fit: cover 사용 권장
     }
   }
 
   &__content {
-    padding: 24px;
+    // 여백을 기존 24px에서 32px로 넓혀 쾌적한 화면 구성
+    padding: 32px;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -46,24 +47,28 @@
     font-weight: 600;
     color: $color-accent;
     background: rgba($color-accent, 0.1);
-    padding: 4px 10px;
-    border-radius: 4px;
+    padding: 6px 12px;
+    border-radius: 6px;
     align-self: flex-start;
-    margin-bottom: 12px;
+    // 태그 아래 여백 확대
+    margin-bottom: 16px;
   }
 
   &__title {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: $color-text-main;
-    margin-bottom: 10px;
+    // 제목 아래 여백 확대
+    margin-bottom: 14px;
     line-height: 1.4;
   }
 
   &__desc {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: $color-text-muted;
-    margin-bottom: 20px;
+    // 설명 텍스트 줄간격 확보
+    line-height: 1.6;
+    margin-bottom: 24px;
     flex-grow: 1;
     display: -webkit-box;
     -webkit-line-clamp: 3;

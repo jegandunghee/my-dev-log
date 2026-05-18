@@ -17,18 +17,17 @@
   &__hero {
     text-align: center;
     margin-bottom: 60px;
-    
-    // 진입 애니메이션 (간단히 CSS로 처리)
-    animation: fadeInDown 1s ease forwards;
+    // GSAP 애니메이션으로 대체됨
   }
 
   &__title {
     font-size: 3rem;
     font-weight: 800;
     margin-bottom: 15px;
-    background: linear-gradient(135deg, #fff, $color-accent);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    // inline-block 속성을 가진 span 요소들과의 렌더링 충돌을 막기 위해 
+    // 그라디언트(background-clip)를 제거하고 세련된 솔리드 다크 슬레이트 컬러 적용
+    color: $color-text-main;
+    cursor: default;
 
     @include respond-to(mobile) {
       font-size: 2.2rem;
@@ -53,21 +52,10 @@
   &__footer {
     text-align: center;
     padding: 30px 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
     color: lighten($color-text-muted, 10%);
     font-size: 0.9rem;
     margin-top: auto;
   }
 }
 
-// 간단한 키프레임 애니메이션
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}

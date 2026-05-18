@@ -18,7 +18,8 @@ const CardList = ({ posts }) => {
           opacity: 1,
           duration: 0.8,
           stagger: 0.1,
-          ease: 'power3.out',
+          // 카테고리 필터 클릭 시 가속도를 더 부드럽고 다이내믹하게 조정 (시작은 민첩, 끝은 부드럽게)
+          ease: 'expo.out',
         }
       );
     }, listRef);

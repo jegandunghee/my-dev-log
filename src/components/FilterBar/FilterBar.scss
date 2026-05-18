@@ -3,11 +3,11 @@
 
 .filter-bar {
   display: flex;
+  // 모든 해상도(모바일 포함)에서 무조건 중앙 정렬되도록 수정
   justify-content: center;
   margin-bottom: 40px;
 
   @include respond-to(mobile) {
-    justify-content: flex-start;
     overflow-x: auto;
     padding-bottom: 10px;
     
@@ -20,10 +20,13 @@
   &__list {
     display: flex;
     gap: 15px;
-    background: rgba(255, 255, 255, 0.03);
+    // 라이트 모드용 연한 투명 배경색 적용
+    background: rgba(255, 255, 255, 0.5);
     padding: 8px 16px;
     border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    // 미세한 테두리와 그림자로 입체감 부여
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
 
     @include respond-to(mobile) {
       border-radius: 20px;
@@ -41,7 +44,7 @@
 
     &:hover {
       color: $color-text-main;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.8);
     }
 
     &--active {

@@ -1,17 +1,18 @@
 // _variables.scss
-// Colors (Dark Mode & Glassmorphism)
-$color-bg-base: #121212;
-$color-text-main: #f5f5f5;
-$color-text-muted: #a0a0a0;
-$color-accent: #646cff;
+// Colors (Off-White & Minimalist Light Mode)
+$color-bg-base: #f8fafc;
+$color-text-main: #0f172a;
+$color-text-muted: #475569;
+$color-accent: #3b82f6; // 포인트 컬러도 라이트모드에 맞게 블루 계열로 조정
 
-// Glassmorphism Variables
-$glass-bg: rgba(255, 255, 255, 0.05);
-$glass-bg-hover: rgba(255, 255, 255, 0.1);
-$glass-border: rgba(255, 255, 255, 0.1);
-$glass-blur: blur(12px);
-$glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-$glass-shadow-hover: 0 10px 40px rgba(0, 0, 0, 0.5);
+// Light Glassmorphism Variables
+$glass-bg: rgba(255, 255, 255, 0.4);
+$glass-bg-hover: rgba(255, 255, 255, 0.6);
+$glass-border: rgba(255, 255, 255, 0.6);
+$glass-blur: blur(20px);
+// 라이트 모드이므로 그림자 농도를 아주 옅게 설정
+$glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+$glass-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.08);
 
 // Breakpoints
 $bp-mobile: 767px;
