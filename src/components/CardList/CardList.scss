@@ -1,0 +1,32 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.card-list {
+  display: grid;
+  gap: 30px;
+  width: 100%;
+
+  // 반응형 그리드 설정
+  @include respond-to(desktop) {
+    grid-template-columns: repeat(3, 1fr); // 데스크톱: 3단
+  }
+
+  @include respond-to(tablet) {
+    grid-template-columns: repeat(2, 1fr); // 태블릿: 2단
+  }
+
+  @include respond-to(mobile) {
+    grid-template-columns: 1fr; // 모바일: 1단
+  }
+
+  &__empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: $color-text-muted;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+  }
+}

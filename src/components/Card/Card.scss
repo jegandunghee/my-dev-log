@@ -1,0 +1,79 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.card {
+  @include glass-panel;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-10px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: $glass-shadow-hover;
+
+    .card__thumbnail-dummy {
+      transform: scale(1.05);
+    }
+  }
+
+  &__thumbnail {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+
+    &-dummy {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease;
+      // 나중에 실제 이미지 적용 시 object-fit: cover 사용 권장
+    }
+  }
+
+  &__content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  &__tag {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $color-accent;
+    background: rgba($color-accent, 0.1);
+    padding: 4px 10px;
+    border-radius: 4px;
+    align-self: flex-start;
+    margin-bottom: 12px;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $color-text-main;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  &__desc {
+    font-size: 0.95rem;
+    color: $color-text-muted;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__date {
+    font-size: 0.85rem;
+    color: lighten($color-text-muted, 10%);
+    text-align: right;
+  }
+}

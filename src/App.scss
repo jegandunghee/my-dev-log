@@ -1,0 +1,73 @@
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &__main {
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 120px 20px 60px; // 헤더 높이(70px) 고려하여 상단 여백 추가
+  }
+
+  &__hero {
+    text-align: center;
+    margin-bottom: 60px;
+    
+    // 진입 애니메이션 (간단히 CSS로 처리)
+    animation: fadeInDown 1s ease forwards;
+  }
+
+  &__title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #fff, $color-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    @include respond-to(mobile) {
+      font-size: 2.2rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.2rem;
+    color: $color-text-muted;
+
+    @include respond-to(mobile) {
+      font-size: 1rem;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    min-height: 400px; // 필터링 시 높이 축소 방지
+  }
+
+  &__footer {
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: lighten($color-text-muted, 10%);
+    font-size: 0.9rem;
+    margin-top: auto;
+  }
+}
+
+// 간단한 키프레임 애니메이션
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

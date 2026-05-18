@@ -1,0 +1,77 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 100;
+  background: rgba($color-bg-base, 0.6);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  &__container {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: $color-text-main;
+    cursor: pointer;
+
+    &-icon {
+      color: $color-accent;
+      font-size: 1.5rem;
+    }
+  }
+
+  &__nav {
+    @include respond-to(mobile) {
+      display: none; // 모바일에서는 기본 메뉴 숨김
+    }
+
+    &-list {
+      display: flex;
+      gap: 30px;
+    }
+
+    &-link {
+      font-size: 1rem;
+      font-weight: 500;
+      color: $color-text-muted;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $color-text-main;
+      }
+    }
+  }
+
+  &__socials {
+    display: flex;
+    gap: 15px;
+
+    .header__social-link {
+      color: $color-text-muted;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $color-text-main;
+      }
+    }
+  }
+}

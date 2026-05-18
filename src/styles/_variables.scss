@@ -1,0 +1,20 @@
+// _variables.scss
+// Colors (Dark Mode & Glassmorphism)
+$color-bg-base: #121212;
+$color-text-main: #f5f5f5;
+$color-text-muted: #a0a0a0;
+$color-accent: #646cff;
+
+// Glassmorphism Variables
+$glass-bg: rgba(255, 255, 255, 0.05);
+$glass-bg-hover: rgba(255, 255, 255, 0.1);
+$glass-border: rgba(255, 255, 255, 0.1);
+$glass-blur: blur(12px);
+$glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+$glass-shadow-hover: 0 10px 40px rgba(0, 0, 0, 0.5);
+
+// Breakpoints
+$bp-mobile: 767px;
+$bp-tablet-min: 768px;
+$bp-tablet-max: 1023px;
+$bp-desktop: 1024px;
