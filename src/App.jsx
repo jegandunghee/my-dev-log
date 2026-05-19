@@ -5,6 +5,14 @@ import FilterBar from './components/FilterBar/FilterBar';
 import CardList from './components/CardList/CardList';
 import './App.scss';
 
+// 썸네일 이미지 임포트
+import imgReactGsap from './assets/images/post_react_gsap.png';
+import imgGlassmorphism from './assets/images/post_glassmorphism.png';
+import imgPortfolio from './assets/images/post_portfolio.png';
+import imgViteScss from './assets/images/post_vite_scss.png';
+import imgContextRedux from './assets/images/post_context_redux.png';
+import imgDarkMode from './assets/images/post_darkmode.png';
+
 // 카테고리 목록 정의
 const CATEGORIES = ['전체', '프론트엔드', 'UI/UX', '일상'];
 
@@ -16,7 +24,8 @@ const DUMMY_POSTS = [
     title: 'React와 GSAP를 활용한 부드러운 스크롤 애니메이션 구현',
     description: '웹사이트의 사용자 경험을 극대화하기 위해 GSAP ScrollTrigger를 React 컴포넌트 생명주기와 통합하는 방법을 정리했습니다.',
     date: '2026.05.15',
-    color: '#FF6B6B'
+    color: '#FF6B6B',
+    image: imgReactGsap
   },
   {
     id: 2,
@@ -24,7 +33,8 @@ const DUMMY_POSTS = [
     title: '글래스모피즘(Glassmorphism) 트렌드 분석 및 적용기',
     description: '최근 유행하는 글래스모피즘 스타일의 디자인 원칙과 CSS(backdrop-filter)를 활용해 웹에 직접 적용하며 느낀 점을 공유합니다.',
     date: '2026.05.10',
-    color: '#4ECDC4'
+    color: '#4ECDC4',
+    image: imgGlassmorphism
   },
   {
     id: 3,
@@ -32,7 +42,8 @@ const DUMMY_POSTS = [
     title: '나만의 개발 포트폴리오를 기획하며',
     description: '그동안 진행했던 프로젝트들을 한곳에 모아보고, 나만의 색깔이 묻어나는 블로그형 포트폴리오를 만들기 위한 첫걸음.',
     date: '2026.05.05',
-    color: '#45B7D1'
+    color: '#45B7D1',
+    image: imgPortfolio
   },
   {
     id: 4,
@@ -40,7 +51,8 @@ const DUMMY_POSTS = [
     title: 'Vite 환경에서 SCSS BEM 방법론 적용하기',
     description: '빠른 빌드 속도를 자랑하는 Vite 환경에 SCSS를 세팅하고, BEM 네이밍 컨벤션을 통해 컴포넌트 기반 스타일링을 구성하는 방법.',
     date: '2026.04.28',
-    color: '#F9CA24'
+    color: '#F9CA24',
+    image: imgViteScss
   },
   {
     id: 5,
@@ -48,7 +60,8 @@ const DUMMY_POSTS = [
     title: '다크 모드 디자인 시 주의할 점 3가지',
     description: '순수 블랙(#000000) 피하기, 텍스트 대비(Contrast) 맞추기 등 눈이 편안한 다크 모드 UI를 위한 핵심 디자인 가이드라인.',
     date: '2026.04.20',
-    color: '#6C5CE7'
+    color: '#6C5CE7',
+    image: imgDarkMode
   },
   {
     id: 6,
@@ -56,7 +69,8 @@ const DUMMY_POSTS = [
     title: '상태 관리를 위한 Context API vs Redux 고민',
     description: '소규모 프로젝트에서 전역 상태 관리를 도입할 때 Context API로 충분한지, 언제 외부 라이브러리를 써야 할지 고찰해 보았습니다.',
     date: '2026.04.15',
-    color: '#55E6C1'
+    color: '#55E6C1',
+    image: imgContextRedux
   }
 ];
 

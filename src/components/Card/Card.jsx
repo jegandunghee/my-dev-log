@@ -6,11 +6,18 @@ const Card = ({ post }) => {
   return (
     <article className="card">
       <div className="card__thumbnail">
-        {/* 임시 썸네일: 더미 색상 div. 향후 실제 이미지 태그로 대체 */}
-        <div 
-          className="card__thumbnail-dummy" 
-          style={{ backgroundColor: post.color }}
-        ></div>
+        {post.image ? (
+          <img 
+            src={post.image} 
+            alt={`${post.title} 썸네일`} 
+            className="card__thumbnail-img" 
+          />
+        ) : (
+          <div 
+            className="card__thumbnail-dummy" 
+            style={{ backgroundColor: post.color }}
+          ></div>
+        )}
       </div>
       <div className="card__content">
         <span className="card__tag">{post.category}</span>

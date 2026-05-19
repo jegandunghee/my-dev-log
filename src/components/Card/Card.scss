@@ -16,7 +16,8 @@
     border-color: rgba(255, 255, 255, 0.9);
     box-shadow: $glass-shadow-hover;
 
-    .card__thumbnail-dummy {
+    .card__thumbnail-dummy,
+    .card__thumbnail-img {
       transform: scale(1.05);
     }
   }
@@ -27,10 +28,16 @@
     overflow: hidden;
     position: relative;
 
-    &-dummy {
+    &-dummy,
+    &-img {
       width: 100%;
       height: 100%;
       transition: transform 0.5s ease;
+    }
+
+    &-img {
+      object-fit: cover;
+      display: block;
     }
   }
 
