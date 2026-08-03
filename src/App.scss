@@ -46,14 +46,15 @@
   &__content {
     display: flex;
     flex-direction: column;
-    min-height: 400px; // 필터링 시 높이 축소 방지
+    min-height: 800px; // 초기 로딩 및 필터링 시 높이 축소로 인한 Layout Shift(푸터 튀어오름) 방지
   }
 
   &__footer {
     text-align: center;
     padding: 30px 20px;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
-    color: lighten($color-text-muted, 10%);
+    color: $color-text-muted;
+    opacity: 0.8;
     font-size: 0.9rem;
     margin-top: auto;
   }

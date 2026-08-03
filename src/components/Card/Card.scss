@@ -53,7 +53,7 @@
     font-size: 0.8rem;
     font-weight: 600;
     color: $color-accent;
-    background: rgba($color-accent, 0.1);
+    background: var(--accent-bg);
     padding: 6px 12px;
     border-radius: 6px;
     align-self: flex-start;
@@ -85,7 +85,8 @@
 
   &__date {
     font-size: 0.85rem;
-    color: lighten($color-text-muted, 10%);
+    color: $color-text-muted;
+    opacity: 0.8;
     text-align: right;
   }
 }

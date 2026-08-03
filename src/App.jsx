@@ -3,6 +3,10 @@ import gsap from 'gsap';
 import Header from './components/Header/Header';
 import FilterBar from './components/FilterBar/FilterBar';
 import CardList from './components/CardList/CardList';
+import CardSkeleton from './components/CardSkeleton/CardSkeleton';
+import WaveBackground from './components/WaveBackground/WaveBackground';
+import Footer from './components/Footer/Footer';
+import FloatingTopBtn from './components/FloatingTopBtn/FloatingTopBtn';
 import './App.scss';
 
 // 썸네일 이미지 임포트
@@ -15,6 +19,11 @@ import imgDarkMode from './assets/images/post_darkmode.png';
 
 // 카테고리 목록 정의
 const CATEGORIES = ['전체', '프론트엔드', 'UI/UX', '일상'];
+
+const DICT = {
+  ko: { title: "나의 개발일지", subtitle: "기록은 성장의 밑거름이 됩니다.", footer: "나의 개발일지. All rights reserved." },
+  en: { title: "My Dev Log", subtitle: "Records become the foundation of growth.", footer: "My Dev Log. All rights reserved." }
+};
 
 // 더미 데이터 생성 (썸네일 이미지 대신 컬러 사용)
 const DUMMY_POSTS = [
@@ -76,7 +85,23 @@ const DUMMY_POSTS = [
 
 function App() {
   const [activeCategory, setActiveCategory] = useState('전체');
+  const [theme, setTheme] = useState('light');
+  const [language, setLanguage] = useState('ko');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
   const titleRef = useRef(null);
+
+  useEffect(() => {
+    // 가상의 데이터 로딩 시간 1.2초로 단축하여 스피디한 경험 제공
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   // 카테고리 변경 핸들러
   const handleCategoryChange = (category) => {
@@ -84,25 +109,29 @@ function App() {
   };
 
   // 선택된 카테고리에 맞게 데이터 필터링
-  const filteredPosts = activeCategory === '전체'
-    ? DUMMY_POSTS
-    : DUMMY_POSTS.filter(post => post.category === activeCategory);
+  const filteredPosts = DUMMY_POSTS.filter(post => {
+    const matchCategory = activeCategory === '전체' || post.category === activeCategory;
+    const matchSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                        post.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchCategory && matchSearch;
+  });
 
   // 텍스트를 한 글자씩 분리하여 렌더링하기 위한 배열
-  const titleChars = "나의 개발일지".split('');
+  const titleChars = DICT[language].title.split('');
 
   useEffect(() => {
     // 최초 렌더링 시 메인 타이틀 파도타기(Wave Reveal) 페이드인 효과
     // React Strict Mode의 이중 렌더링 버그를 방지하기 위해 fromTo 사용
     const ctx = gsap.context(() => {
       gsap.fromTo('.app__title-char', 
-        { y: 40, opacity: 0 },
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 1,
+          duration: 0.8,
           stagger: 0.05,
-          ease: 'power4.out',
+          ease: 'power3.out',
+          delay: 0.2 // 스켈레톤과 비슷한 타이밍에 나타나도록 약간의 딜레이
         }
       );
     }, titleRef);
@@ -123,11 +152,19 @@ function App() {
 
   return (
     <div className="app">
-      <Header />
+      <WaveBackground theme={theme} />
+      <Header 
+        theme={theme} 
+        setTheme={setTheme} 
+        language={language} 
+        setLanguage={setLanguage}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
       
       <main className="app__main">
         <section className="app__hero">
-          <h1 className="app__title" ref={titleRef}>
+          <h1 className="app__title" ref={titleRef} key={language}>
             {/* 메인 타이틀을 span으로 쪼개어 개별 애니메이션 제어 */}
             {titleChars.map((char, index) => (
               <span 
@@ -141,7 +178,7 @@ function App() {
               </span>
             ))}
           </h1>
-          <p className="app__subtitle">기록은 성장의 밑거름이 됩니다.</p>
+          <p className="app__subtitle">{DICT[language].subtitle}</p>
         </section>
 
         <section className="app__content">
@@ -151,13 +188,20 @@ function App() {
             onCategoryChange={handleCategoryChange} 
           />
           
-          <CardList posts={filteredPosts} />
+          {isLoading ? (
+            <div className="card-list">
+              {[1, 2, 3, 4, 5, 6].map((key) => (
+                <CardSkeleton key={key} />
+              ))}
+            </div>
+          ) : (
+            <CardList posts={filteredPosts} />
+          )}
         </section>
       </main>
 
-      <footer className="app__footer">
-        <p>&copy; {new Date().getFullYear()} 나의 개발일지. All rights reserved.</p>
-      </footer>
+      <Footer language={language} dict={DICT} />
+      <FloatingTopBtn />
     </div>
   );
 }

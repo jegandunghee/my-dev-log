@@ -1,9 +1,9 @@
 // _variables.scss
-// Colors (Off-White & Minimalist Light Mode)
-$color-bg-base: #f8fafc;
-$color-text-main: #0f172a;
-$color-text-muted: #475569;
-$color-accent: #3b82f6; // 포인트 컬러도 라이트모드에 맞게 블루 계열로 조정
+// Colors (CSS 변수 매핑으로 다크모드 완벽 연동)
+$color-bg-base: var(--bg);
+$color-text-main: var(--text-h);
+$color-text-muted: var(--text);
+$color-accent: var(--accent);
 
 // Light Glassmorphism Variables
 $glass-bg: rgba(255, 255, 255, 0.4);

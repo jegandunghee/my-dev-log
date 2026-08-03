@@ -20,13 +20,13 @@
   &__list {
     display: flex;
     gap: 15px;
-    // 라이트 모드용 연한 투명 배경색 적용
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(150, 150, 150, 0.15); // 테마 공통 은은한 투명도
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     padding: 8px 16px;
     border-radius: 50px;
-    // 미세한 테두리와 그림자로 입체감 부여
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1); // 다크모드/라이트모드 공용 미세한 테두리
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); // 아주 부드러운 그림자
 
     @include respond-to(mobile) {
       border-radius: 20px;
@@ -52,7 +52,7 @@
       background: $color-accent;
       
       &:hover {
-        background: lighten($color-accent, 5%);
+        filter: brightness(1.1);
       }
     }
   }
