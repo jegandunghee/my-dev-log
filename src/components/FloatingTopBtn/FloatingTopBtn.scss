@@ -1,40 +1,38 @@
-@use '../../styles/variables' as *;
+﻿@use "../../styles/variables" as *;
 
 .floating-top-btn {
   position: fixed;
-  bottom: 40px;
-  right: 40px;
-  width: 50px;
-  height: 50px;
+  bottom: 34px;
+  right: 34px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: rgba(59, 130, 246, 0.7); // 반투명 파란색
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.4); // 존재감을 위한 미세한 테두리
+  background: var(--accent);
+  border: 1px solid var(--accent-border);
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   cursor: pointer;
   z-index: 1000;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); // 파란색 그림자로 강조
-  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-  visibility: hidden; // GSAP autoAlpha가 제어
+  box-shadow: 0 4px 18px var(--accent-border), 0 0 0 0 var(--accent-border);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  visibility: hidden;  // GSAP autoAlpha 제어
 
   &:hover {
-    transform: translateY(-5px);
-    background: rgba(59, 130, 246, 0.9);
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+    transform: translateY(-4px) scale(1.06);
+    box-shadow: 0 8px 28px var(--accent-border), 0 0 0 4px var(--accent-border);
   }
+
+  &:active { transform: scale(0.94); }
 }
 
-// 모바일 대응
 @media (max-width: 768px) {
   .floating-top-btn {
     bottom: 20px;
     right: 20px;
-    width: 45px;
-    height: 45px;
+    width: 44px;
+    height: 44px;
   }
 }

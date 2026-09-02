@@ -85,7 +85,7 @@ const DUMMY_POSTS = [
 
 function App() {
   const [activeCategory, setActiveCategory] = useState('전체');
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
   const [language, setLanguage] = useState('ko');
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoading, setIsLoading] = useState(true);

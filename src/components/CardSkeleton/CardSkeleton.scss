@@ -1,20 +1,28 @@
+﻿@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
 .card-skeleton {
-  width: 100%;
-  height: 400px;
-  background: var(--bg);
-  border-radius: 16px;
-  overflow: hidden;
+  background: var(--bg-glass);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 
   &__image {
     width: 100%;
-    height: 180px;
+    height: 175px;
+    flex-shrink: 0;
+    border-radius: 0;
   }
 
   &__content {
-    padding: 24px;
+    padding: 22px 26px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -24,46 +32,48 @@
   &__meta {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
+    align-items: center;
   }
 
   &__category {
     width: 60px;
-    height: 14px;
-    border-radius: 10px;
+    height: 22px;
+    border-radius: 6px;
   }
 
   &__date {
-    width: 80px;
+    width: 70px;
     height: 14px;
-    border-radius: 10px;
+    border-radius: 6px;
   }
 
   &__title {
-    width: 90%;
-    height: 24px;
+    width: 88%;
+    height: 20px;
     border-radius: 4px;
+    &:nth-of-type(2) { width: 62%; }
   }
 
   &__desc {
     width: 100%;
-    height: 16px;
+    height: 14px;
     border-radius: 4px;
-    margin-top: auto;
+    &:last-of-type { width: 76%; }
   }
 }
 
 .skeleton-shimmer {
-  background: linear-gradient(90deg, var(--border) 25%, var(--code-bg) 50%, var(--border) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
+  background: linear-gradient(
+    90deg,
+    var(--border) 0%,
+    var(--code-bg) 45%,
+    var(--border) 90%
+  );
+  background-size: 300% 100%;
+  animation: sk-shimmer 1.8s ease-in-out infinite;
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
+@keyframes sk-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }

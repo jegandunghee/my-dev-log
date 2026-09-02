@@ -1,21 +1,21 @@
-// _variables.scss
-// Colors (CSS 변수 매핑으로 다크모드 완벽 연동)
-$color-bg-base: var(--bg);
-$color-text-main: var(--text-h);
+﻿// _variables.scss
+
+// ── Text / Accent ─────────────────────────────
+$color-text-main:  var(--text-h);
 $color-text-muted: var(--text);
-$color-accent: var(--accent);
+$color-accent:     var(--accent);
+$color-bg-base:    var(--bg);
 
-// Light Glassmorphism Variables
-$glass-bg: rgba(255, 255, 255, 0.4);
-$glass-bg-hover: rgba(255, 255, 255, 0.6);
-$glass-border: rgba(255, 255, 255, 0.6);
-$glass-blur: blur(20px);
-// 라이트 모드이므로 그림자 농도를 아주 옅게 설정
-$glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
-$glass-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.08);
+// ── Glassmorphism — CSS 변수로 다크/라이트 자동 전환 ─
+// (하드코딩 제거: index.css :root 변수가 제어)
+$glass-bg:           var(--bg-glass);
+$glass-border:       var(--border);
+$glass-blur:         blur(18px);
+$glass-shadow:       var(--shadow);
+$glass-shadow-hover: 0 8px 36px rgba(100, 60, 180, 0.18);
 
-// Breakpoints
-$bp-mobile: 767px;
+// ── Breakpoints ──────────────────────────────
+$bp-mobile:     767px;
 $bp-tablet-min: 768px;
 $bp-tablet-max: 1023px;
-$bp-desktop: 1024px;
+$bp-desktop:    1024px;

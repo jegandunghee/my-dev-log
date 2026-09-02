@@ -1,32 +1,31 @@
-@use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
+﻿@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .card-list {
   display: grid;
-  gap: 30px;
+  gap: 22px;
   width: 100%;
+  // 기본: 768~1023px (태블릿) → 2단
+  grid-template-columns: repeat(2, 1fr);
 
-  // 반응형 그리드 설정
   @include respond-to(desktop) {
-    grid-template-columns: repeat(3, 1fr); // 데스크톱: 3단
-  }
-
-  @include respond-to(tablet) {
-    grid-template-columns: repeat(2, 1fr); // 태블릿: 2단
+    grid-template-columns: repeat(3, 1fr);
   }
 
   @include respond-to(mobile) {
-    grid-template-columns: 1fr; // 모바일: 1단
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   &__empty {
     grid-column: 1 / -1;
     text-align: center;
-    padding: 60px 20px;
-    color: $color-text-muted;
-    font-size: 1.1rem;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 12px;
-    border: 1px dashed rgba(255, 255, 255, 0.1);
+    padding: 80px 20px;
+    color: var(--text);
+    font-size: 0.95rem;
+    background: var(--accent-bg);
+    border-radius: 16px;
+    border: 1px dashed var(--accent-border);
+    opacity: 0.75;
   }
 }

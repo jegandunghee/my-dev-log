@@ -1,56 +1,69 @@
-@use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
+﻿@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .filter-bar {
   display: flex;
-  // 모든 해상도(모바일 포함)에서 무조건 중앙 정렬되도록 수정
   justify-content: center;
   margin-bottom: 40px;
 
   @include respond-to(mobile) {
     overflow-x: auto;
-    padding-bottom: 10px;
-    
-    // 스크롤바 숨기기
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    justify-content: flex-start;
+    padding-bottom: 8px;
+    &::-webkit-scrollbar { display: none; }
   }
 
+  // 점(bullet) 제거 이중 안전망
   &__list {
+    list-style: none !important;
     display: flex;
-    gap: 15px;
-    background: rgba(150, 150, 150, 0.15); // 테마 공통 은은한 투명도
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    padding: 8px 16px;
+    align-items: center;
+    gap: 4px;
+    background: var(--bg-glass);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    padding: 6px;
     border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.1); // 다크모드/라이트모드 공용 미세한 테두리
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); // 아주 부드러운 그림자
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: background 0.4s ease, border-color 0.4s ease;
+    flex-wrap: nowrap;   // UI/UX 줄바꿈 방지
+    white-space: nowrap;
+  }
 
-    @include respond-to(mobile) {
-      border-radius: 20px;
-    }
+  &__item {
+    list-style: none !important;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;      // 아이템 크기 축소 방지
   }
 
   &__button {
-    padding: 8px 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 18px;
     border-radius: 30px;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 500;
     color: $color-text-muted;
-    transition: all 0.3s ease;
     white-space: nowrap;
+    transition: all 0.25s ease;
+    line-height: 1;
 
     &:hover {
       color: $color-text-main;
-      background: rgba(255, 255, 255, 0.8);
+      background: var(--accent-bg);
     }
 
+    /* ── 활성 탭: 라이트/다크 공용으로 가독성 보장 ── */
     &--active {
-      color: #fff;
-      background: $color-accent;
-      
+      background: var(--accent) !important;
+      color: #ffffff !important;         // 항상 흰 글씨
+      font-weight: 700;
+      box-shadow: 0 0 18px var(--accent-border);
+      pointer-events: none;
+
       &:hover {
         filter: brightness(1.1);
       }

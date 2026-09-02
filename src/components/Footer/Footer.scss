@@ -1,78 +1,74 @@
-@use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
+﻿@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .footer {
   width: 100%;
   margin-top: 80px;
-  background: rgba(0, 0, 0, 0.02);
-  border-top: 1px solid rgba(150, 150, 150, 0.1);
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border);
   overflow: hidden;
+  transition: background 0.4s ease, border-color 0.4s ease;
 
   &__marquee {
     width: 100%;
     height: 50px;
     display: flex;
     align-items: center;
-    background: rgba(150, 150, 150, 0.05);
-    border-bottom: 1px solid rgba(150, 150, 150, 0.1);
-    backdrop-filter: blur(5px);
+    background: var(--accent-bg);
+    border-bottom: 1px solid var(--border);
     overflow: hidden;
     position: relative;
 
     &::before, &::after {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
-      width: 50px;
+      width: 70px;
       height: 100%;
       z-index: 2;
+      pointer-events: none;
     }
-
-    &::before {
-      left: 0;
-      background: linear-gradient(to right, var(--bg), transparent);
-    }
-    &::after {
-      right: 0;
-      background: linear-gradient(to left, var(--bg), transparent);
-    }
+    &::before { left: 0;  background: linear-gradient(to right, var(--bg), transparent); }
+    &::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
 
     &-track {
       display: flex;
       width: max-content;
-      animation: marquee 20s linear infinite;
-
-      &:hover {
-        animation-play-state: paused;
-      }
+      animation: marquee-scroll 28s linear infinite;
+      &:hover { animation-play-state: paused; }
     }
 
     &-item {
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 0 30px;
+      padding: 0 26px;
       color: var(--text);
-      font-size: 1rem;
+      font-size: 0.88rem;
       font-weight: 600;
       white-space: nowrap;
+      transition: color 0.2s ease;
+      &:hover { color: var(--text-h); }
 
       .icon {
-        font-size: 1.2rem;
-        color: var(--text-h);
+        font-size: 1.1rem;
+        color: var(--accent);
       }
     }
   }
 
   &__bottom {
-    padding: 20px 0;
+    padding: 16px 0;
     text-align: center;
-    font-size: 0.9rem;
-    color: var(--text-muted);
+    font-size: 0.82rem;
+    color: var(--text);
+    opacity: 0.6;
   }
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0); }
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
