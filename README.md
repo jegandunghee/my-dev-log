@@ -243,7 +243,8 @@ return () => ctx.revert();
 
 ## 📸 스크린샷
 
-> 스크린샷 추가 예정
+<img width="686" height="496" alt="mdl-mockup" src="https://github.com/user-attachments/assets/e533d58a-bdb6-41ad-90df-a3c899dc5414" />
+
 
 <br>
 
